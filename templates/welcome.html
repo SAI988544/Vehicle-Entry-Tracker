@@ -1,0 +1,158 @@
+{% extends 'base.html' %}
+
+{% block title %}Welcome - ANPR Vehicle Tracking System{% endblock %}
+
+{% block content %}
+<style>
+  .welcome-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 100vh;
+    padding: 4rem;
+    background: linear-gradient(135deg,rgb(8, 23, 44),rgb(62, 5, 81));
+    color: #ffffff;
+  }
+
+  .welcome-text {
+    flex: 1;
+    max-width: 600px;
+    padding: 2rem;
+    animation: fadeInLeft 1.5s ease-in-out;
+  }
+
+  .welcome-text h1 {
+    font-size: 3.5rem;
+    font-weight: 800;
+    color: #3a8dff;
+    margin-bottom: 1rem;
+  }
+
+  .welcome-text h2 {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: #d1e3ff;
+  }
+
+  .welcome-text p {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    margin-bottom: 1rem;
+    color: #e0e0e0;
+  }
+
+  .typed-text {
+    font-size: 1.2rem;
+    font-style: italic;
+    color:rgb(87, 109, 215);
+    margin-bottom: 2rem;
+    animation: fadeIn 2s ease;
+  }
+
+  .welcome-buttons a {
+    display: inline-block;
+    padding: 14px 32px;
+    margin-top: 1rem;
+    border-radius: 30px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-decoration: none;
+    background-color:#6179f3;
+    color: #ffffff;
+    box-shadow: 0 0 12px #4795e5;
+    transition: all 0.3s ease;
+  }
+
+  .welcome-buttons a:hover {
+    background-color: #6179f3;
+    transform: scale(1.05);
+  }
+
+  .welcome-image {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: fadeInRight 1.5s ease-in-out;
+  }
+
+  .welcome-image img {
+    max-width: 90%;
+    height: auto;
+    filter: drop-shadow(0 0 20px rgba(58, 141, 255, 0.5));
+  }
+
+  @keyframes fadeInLeft {
+    from { opacity: 0; transform: translateX(-50px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+
+  @keyframes fadeInRight {
+    from { opacity: 0; transform: translateX(50px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @media (max-width: 992px) {
+    .welcome-container {
+      flex-direction: column;
+      text-align: center;
+      padding: 2rem;
+    }
+
+    .welcome-text h1 {
+      font-size: 2.5rem;
+    }
+
+    .welcome-text h2 {
+      font-size: 1.5rem;
+    }
+
+    .welcome-image {
+      margin-top: 2rem;
+    }
+  }
+</style>
+
+<div class="welcome-container">
+  <div class="welcome-text">
+    <h1>ANPR</h1>
+    <h2>Automatic Number Plate Recognition</h2>
+    <p>Our intelligent system helps in recognizing number plates using AI-powered detection.</p>
+
+    <!-- 🔵 Typing Animation -->
+    <div id="typed-text" class="typed-text"></div>
+
+    <!-- ✅ Single Button -->
+    <div class="welcome-buttons">
+      <a href="{{ url_for('auth.login') }}">Get Started</a>
+    </div>
+  </div>
+
+  <div class="welcome-image">
+    <img src="{{ url_for('static', filename='images/car.png') }}" alt="ANPR Illustration">
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var typed = new Typed('#typed-text', {
+      strings: [
+        "It helps in recognizing number plates efficiently.",
+        "The system is designed to enhance security and streamline vehicle entry.",
+        "Our solution integrates advanced image processing techniques."
+      ],
+      typeSpeed: 60,
+      backSpeed: 35,
+      loop: true,
+      showCursor: false
+    });
+  });
+</script>
+{% endblock %}
